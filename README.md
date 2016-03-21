@@ -2,7 +2,7 @@
 
 基于webpack(打包)&gulp(工作流)&koa(数据mock)的本地开发环境
 
-## 执行命令
+### 执行命令
  - `tnpm run start`  
    启用带有`hmr`功能的本地服务开发环境
  - `tnpm run debug`  
@@ -14,17 +14,17 @@
  - `tnpm run test`  
    执行单元测试
 
-## 数据mock配置说明
+### 数据mock配置说明
  - 目前数据mock功能只能支持mock一个接口（设定为`/api/list`，所以所有的mock请求都请求这一个接口），在配置中，需要将不同的请求区分配置放在req参数中，然后在配置对象中指定req对应值返回的数据即可。
  - 配置完数据后要想使得mock的数据生效，需要关闭当前本地服务，执行`tnpm run mock`重新启动服务，mock数据方可生效。
 
-## 技术方案
+### 技术方案
 
  - reflux + react 
  - webpack + gulp + koa（用于mock数据）
  - tnpm
 
-## 目录结构
+### 目录结构
 
 
         ├── .build                            [项目发布后生成的目录或文件]
@@ -54,32 +54,32 @@
         ├── webpack-hot-dev-server.config.js  [带hmr功能的本地服务配置]
         └── webpack-production.config.js      [构建用于部署的静态资源文件配置]
 
-## 依赖说明
+### 依赖说明
   lodash
   "react-router": "1.0.0-beta3"  不稳定版本，后续要关注下更新
 
 
-## webpack 记录
+### webpack 记录
 
  - output 里的 publicPath: '/build/' 注释掉，此配置会导致生成build中的css引用的字体路径为/build/xxxx (publicPath:'/')
 
-## BUG LIST
+### BUG LIST
 
 console 报错 Invariant Violation: addComponentAsRefTo(...): Only a ReactOwner can have refs. This usually means that you're trying to add a ref to a component that doesn't have an owner (that is, was not created inside of another component's `render` method). Try rendering this component inside of a new top-level component which will hold the ref.
 
 解决方法：同时使用了两个版本的react,删除本地的react即可
 
-### react-highcharts 用webpack打包，使用babel打包后报错
+#### react-highcharts 用webpack打包，使用babel打包后报错
 
 解决方法：react-highcharts自身已经用webpack打包，二次打包时添加 'use strict'; 
 手动删除 'use strict'; 报错消失，通过配置webpack config 的loader,修改{test: /\.(js)$/,loader: 'babel-loader?loose=all'}, 为 {test: /\.(js)$/,exclude: /node_modules/,loader: 'babel-loader?loose=all'}, 可以解决此问题。
 
-### 重构代码组织目录，点击菜单报错
+#### 重构代码组织目录，点击菜单报错
 
 `type.toUpperCase() is not a function` 
 由于重构 sideItem ,sideNav 导致了循环引用。webpack并未报错，只是返回了 {} 。导致 React无法识别。
 
-### Reflux问题记录
+#### Reflux问题记录
 模型：
     Stroe : state [a:'',b:''] ,
             onGetA: Ajax , trigger({a:a})
@@ -94,14 +94,14 @@ console 报错 Invariant Violation: addComponentAsRefTo(...): Only a ReactOwner 
 解决方法：
     将store中的trigger({a:a}),trigger({b:b})都修改为trigger({a:a,b:b})
 
-### jsPlumb 打包 
+#### jsPlumb 打包 
 
 imports-loader 
 exports-loader 
 
 webpack.config.js :
 
-    module.noParse : /min\.js|jsPlumb.*\.js/  ## 不解析依赖
+    module.noParse : /min\.js|jsPlumb.*\.js/  ### 不解析依赖
 
 
 usage method 1:
@@ -115,7 +115,7 @@ usage method 2:
         loaders: {test: /\.jsPlumb.*\.js$/, loader: 'imports-loader?this=>window!exports-loader?jsPlumb'}
         // or  resolve.alias 
 
-### moment-timezone 
+#### moment-timezone 
 
 webpack 加载 moment-timezone 问题处理：
 http://stackoverflow.com/questions/29548386/how-should-i-use-moment-timezone-with-webpack
