@@ -3,26 +3,26 @@
 基于webpack(打包)&gulp(工作流)&koa(数据mock)的本地开发环境
 
 ### 执行命令
- - `tnpm run start`  
+ - `npm run start`  
    启用带有`hmr`功能的本地服务开发环境
- - `tnpm run debug`  
+ - `npm run debug`  
    启用不带`hrm`功能的本地服务开发环境
- - `tnpm run mock`  
+ - `npm run mock`  
    启用带有`数据mock`功能的本地服务开发环境（不带hmr，因该功能还不稳定[Webpack用来做模块热替换](http://segmentfault.com/a/1190000003872635)）
- - `tnpm run build`  
+ - `npm run build`  
    执行项目构建，构建至`.build`文件夹，用于线上发布
- - `tnpm run test`  
+ - `npm run test`  
    执行单元测试
 
 ### 数据mock配置说明
  - 目前数据mock功能只能支持mock一个接口（设定为`/api/list`，所以所有的mock请求都请求这一个接口），在配置中，需要将不同的请求区分配置放在req参数中，然后在配置对象中指定req对应值返回的数据即可。
- - 配置完数据后要想使得mock的数据生效，需要关闭当前本地服务，执行`tnpm run mock`重新启动服务，mock数据方可生效。
+ - 配置完数据后要想使得mock的数据生效，需要关闭当前本地服务，执行`npm run mock`重新启动服务，mock数据方可生效。
 
 ### 技术方案
 
  - reflux + react 
  - webpack + gulp + koa（用于mock数据）
- - tnpm
+ - npm
 
 ### 目录结构
 
