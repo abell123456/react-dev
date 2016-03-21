@@ -6,7 +6,7 @@
  - `npm run start`  
    启用带有`hmr`功能的本地服务开发环境
  - `npm run debug`  
-   启用不带`hrm`功能的本地服务开发环境
+   启用不带`hmr`功能的本地服务开发环境
  - `npm run mock`  
    启用带有`数据mock`功能的本地服务开发环境（不带hmr，因该功能还不稳定[Webpack用来做模块热替换](http://segmentfault.com/a/1190000003872635)）
  - `npm run build`  
